@@ -2,33 +2,32 @@
 ## functions do
 
 ## Write a short comment describing this function
-
+## The function makecacheMatrix consists of set, get, setinverse, getinverse
 makeCacheMatrix <- function(x = matrix()) {
-  i <- NULL
+  i <- NULL                     ## initializing inverse as NULL
   set <- function(y) {
     x <<- y
     i <<- NULL
   }
-  get <- function() x
+  get <- function() x           ## function to get matrix x
   setinverse <- function(inverse) i <<- inverse
-  getinverse <- function() i
+  getinverse <- function() i    ## function to obtain inverse of the matrix
   list(set = set,
        get = get,
        setinverse = setinverse,
        getinverse = getinverse)
 }
 
-
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
+## write a short comment describing this function
+#### This is used to get the cache data
+cacheSolve <- function(x, ...) {    ## gets cache data
   i <- x$getinverse()
-  if(!is.null(i)) {
+  if(!is.null(i)) {                 ## checking whether inverse is NULL
     message("getting cached data")
-    return(i)
+    return(i)                       ## return inverse value
   }
   data <- x$get()
-  i <- solve(data, ...)
+  i <- solve(data, ...)             ## calculates inverse value
   x$setinverse(i)
-  i      
+  i                                 ## return a matrix that is the inverse of 'x'
 }
